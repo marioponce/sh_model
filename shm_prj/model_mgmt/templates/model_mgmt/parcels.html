@@ -1,0 +1,47 @@
+{% extends 'model_mgmt/layout.html' %}
+
+{% block content %}
+    <h1>Parcels</h1>
+    <div>
+        <button><a href = "{% url 'add_parcel' %}">+ Add parcel</a></button>
+    </div>
+    <div><p> </p></div>
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Place's name</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Location</th>
+            <th scope="col">Storage</th>
+            <th scope="col">Grass</th>
+            <th scope="col">Fertility</th>
+            <th scope="col">Livestock</th>
+            <th scope="col">Capital</th>
+            <th scope="col">Income</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for parcel in parcels%}
+                <tr>
+                    <td>{{ parcel.name }}</td>
+                    <td>{{ parcel.farmer.fName }} {{ parcel.farmer.lName }}</td>
+                    <td>
+                        <div>{{ parcel.lat }}</div>
+                        <div>{{ parcel.lon }}</div>
+                    </td>
+                    <td>{{ parcel.storage }}</td>
+                    <td>{{ parcel.grass }}</td>
+                    <td>{{ parcel.fertility }}</td>
+                    <td>{{ parcel.livestock }}</td>
+                    <td>{{ parcel.capital }}</td>
+                    <td>{{ parcel.income }}</td>
+                    <td><button><a href = "{% url 'edit_parcel' parcel.id %}">Edit</a></button></td>
+                    <td><button><a href = "{% url 'delete_parcel' parcel.id %}">Delete</a></button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

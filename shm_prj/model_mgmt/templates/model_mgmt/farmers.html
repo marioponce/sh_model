@@ -1,0 +1,39 @@
+{% extends 'model_mgmt/layout.html' %}
+
+{% block content %}
+    <h1>Farmers</h1>
+    <div>
+        <button><a href = "{% url 'add_farmer' %}">+ Add farmer</a></button>
+    </div>
+    <div><p> </p></div>
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Sex</th>
+            <th scope="col">Age</th>
+            <th scope="col">Parcels</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for farmer in farmers%}
+                <tr>
+                    <td>{{ farmer.fName }}</td>
+                    <td>{{ farmer.lName }}</td>
+                    <td>{{ farmer.sex }}</td>
+                    <td>{{ farmer.age }}</td>
+                    <td>
+                        {% for parcel in farmer.parcels.all %}
+                            <div>{{ parcel.name }}</div>
+                        {% endfor %}
+                    </td>
+                    <td><button><a href = "{% url 'edit_farmer' farmer.id %}">Edit</a></button></td>
+                    <td><button><a href = "{% url 'delete_farmer' farmer.id %}">Delete</a></button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

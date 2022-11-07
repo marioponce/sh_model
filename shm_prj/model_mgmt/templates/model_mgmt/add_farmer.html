@@ -1,0 +1,20 @@
+{% extends 'model_mgmt/layout.html' %}
+
+{% block content %}
+
+<div class='jumbotron'>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class='form-group'>
+        <center><label for="{{ field.name }}">{{ field.label }}</label>
+        {{ field }}</center>
+      </div>
+      {% endfor %}
+      <br>
+      <center><button>Add farmer</button></center>
+    </form>
+  </div>
+
+{% endblock %}
+
