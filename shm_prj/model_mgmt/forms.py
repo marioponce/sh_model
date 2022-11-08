@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from django import forms
 from .models import Farmer, Parcel
 
@@ -7,13 +9,13 @@ class FarmerForm(forms.ModelForm):
 
     class Meta:
         model = Farmer 
-        fields = [
+        fields = [ # fields to be filled in the form
             'fName',
             'lName',
             'age',
             'sex'
         ]
-        labels = {
+        labels = { # labels to display in the form instead of the field names
             'fName': 'First Name',
             'lName': 'Last Name',
             'age': "Age",
@@ -26,7 +28,7 @@ class ParcelForm(forms.ModelForm):
 
     class Meta:
         model = Parcel
-        fields = [
+        fields = [ # fields to be filled in the form
             'name',
             'lon',
             'lat',
@@ -38,7 +40,7 @@ class ParcelForm(forms.ModelForm):
             'income',
             'farmer'
         ]
-        labels = {
+        labels = { # labels to display in the form instead of the field names
             'name': "Place's name",
             'farmer': 'Owner'
         }

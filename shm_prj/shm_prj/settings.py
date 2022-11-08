@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 Django settings for shm_prj project.
 
@@ -25,12 +27,13 @@ SECRET_KEY = 'md_avhyj^mv_hlpfl0@zbgf$@r)f-*1e!+=!#^gm)ai52wb=+@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# AWS domain where the app is hosted
 ALLOWED_HOSTS = ['shm-env.eba-drfyvdui.us-west-2.elasticbeanstalk.com']
 
 # Application definition
 
 INSTALLED_APPS = [
-    'model_mgmt',
+    'model_mgmt', # this is the app I've created
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,14 +75,6 @@ WSGI_APPLICATION = 'shm_prj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-"""
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
         'default': {
@@ -92,7 +87,8 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-    DATABASES = {
+    # this info is from the RDS-AWS instance
+    DATABASES = { 
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'ebdb',
